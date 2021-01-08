@@ -14,7 +14,6 @@ use Firebase\JWT\JWT;
 class UserController{
    
     private $container;
-    const JWT_SECRET = "MET-02";
 
 
     // constructor receives container instance

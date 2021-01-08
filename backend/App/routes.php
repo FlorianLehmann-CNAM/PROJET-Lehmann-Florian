@@ -4,6 +4,7 @@ use Slim\App;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Firebase\JWT\JWT;
+use App\Middleware\CorsMiddleware;
 
 const JWT_SECRET = "CeciEstUnSecretVraimentLongVirguleTellementLongQuilDevientDifficileADecoderPoint";
 
@@ -25,7 +26,7 @@ return function (App $app) {
     ]);
 
     $app->add($jwt);
-
+    $app->add(new CorsMiddleware());
     $app->get('/products', function($request, $response){
         $string = file_get_contents("../public/assets/Products.json");
         return $response->write($string);
