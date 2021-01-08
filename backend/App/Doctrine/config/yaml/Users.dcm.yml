@@ -1,6 +1,6 @@
-User:
+Users:
     type: entity
-    table: user
+    table: users
     id:
         id:
             type: integer
@@ -10,7 +10,7 @@ User:
             id: true
             column: Id
             generator:
-                strategy: IDENTITY
+                strategy: SEQUENCE
     fields:
         name:
             type: string

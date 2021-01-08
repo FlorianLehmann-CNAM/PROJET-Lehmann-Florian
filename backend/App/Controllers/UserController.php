@@ -7,7 +7,7 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use App\Controllers\JWTController;
-use User;
+use Users;
 use Firebase\JWT\JWT;
 
 
@@ -33,7 +33,7 @@ class UserController{
         $login = $request->getQueryParams()['login'];
         $password = $request->getQueryParams()['password'];
 
-        $userRepo = $entityManager->getRepository('User');
+        $userRepo = $entityManager->getRepository('Users');
         $userExist = $userRepo->findOneBy(array("login" => $login, "password" => $password));
 
         $response = JWTController::createJwt($response);
@@ -62,7 +62,7 @@ class UserController{
 
 
         $value = json_decode($request->getBody());
-        $userRepo = $entityManager->getRepository('User');
+        $userRepo = $entityManager->getRepository('Users');
         $userExists = $userRepo->findOneBy(array("login" => $value->Login, "name" => $value->Name));
         
         if(!$userExists){

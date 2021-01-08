@@ -2,99 +2,68 @@
 
 
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
- * User
- *
- * @ORM\Table(name="user")
- * @ORM\Entity
+ * Users
  */
-class User
+class Users
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="Id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="Name", type="string", length=255, nullable=true)
      */
     private $name;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="Surname", type="string", length=255, nullable=true)
      */
     private $surname;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="Address", type="string", length=1024, nullable=true)
      */
     private $address;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="PostalCode", type="string", length=255, nullable=true)
      */
     private $postalcode;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="City", type="string", length=255, nullable=true)
      */
     private $city;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="MobilePhone", type="string", length=255, nullable=true)
      */
     private $mobilephone;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="Mail", type="string", length=255, nullable=true)
      */
     private $mail;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="Country", type="string", length=255, nullable=true)
      */
     private $country;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="Gender", type="string", length=255, nullable=true)
      */
     private $gender;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="Login", type="string", length=1024, nullable=true)
      */
     private $login;
 
     /**
      * @var string|null
-     *
-     * @ORM\Column(name="Password", type="string", length=9999, nullable=true)
      */
     private $password;
 
@@ -114,7 +83,7 @@ class User
      *
      * @param string|null $name
      *
-     * @return User
+     * @return Users
      */
     public function setName($name = null)
     {
@@ -138,7 +107,7 @@ class User
      *
      * @param string|null $surname
      *
-     * @return User
+     * @return Users
      */
     public function setSurname($surname = null)
     {
@@ -162,7 +131,7 @@ class User
      *
      * @param string|null $address
      *
-     * @return User
+     * @return Users
      */
     public function setAddress($address = null)
     {
@@ -186,7 +155,7 @@ class User
      *
      * @param string|null $postalcode
      *
-     * @return User
+     * @return Users
      */
     public function setPostalcode($postalcode = null)
     {
@@ -210,7 +179,7 @@ class User
      *
      * @param string|null $city
      *
-     * @return User
+     * @return Users
      */
     public function setCity($city = null)
     {
@@ -234,7 +203,7 @@ class User
      *
      * @param string|null $mobilephone
      *
-     * @return User
+     * @return Users
      */
     public function setMobilephone($mobilephone = null)
     {
@@ -258,7 +227,7 @@ class User
      *
      * @param string|null $mail
      *
-     * @return User
+     * @return Users
      */
     public function setMail($mail = null)
     {
@@ -282,7 +251,7 @@ class User
      *
      * @param string|null $country
      *
-     * @return User
+     * @return Users
      */
     public function setCountry($country = null)
     {
@@ -306,7 +275,7 @@ class User
      *
      * @param string|null $gender
      *
-     * @return User
+     * @return Users
      */
     public function setGender($gender = null)
     {
@@ -330,7 +299,7 @@ class User
      *
      * @param string|null $login
      *
-     * @return User
+     * @return Users
      */
     public function setLogin($login = null)
     {
@@ -354,7 +323,7 @@ class User
      *
      * @param string|null $password
      *
-     * @return User
+     * @return Users
      */
     public function setPassword($password = null)
     {
