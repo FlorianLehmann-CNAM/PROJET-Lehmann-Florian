@@ -8,7 +8,7 @@ import { NewJwt, SignInUser, SignOutUser } from '../actions/User.action';
     name: 'user',
     defaults: {
         isLogged: false,
-        userId: -1,
+        user: null,
         token: ""
     }
 })
@@ -16,6 +16,10 @@ import { NewJwt, SignInUser, SignOutUser } from '../actions/User.action';
 export class UserState{
 
 
+    @Selector()
+    static GetUser(state: UserStateModel) : User{
+        return state.user;
+    }
 
     @Selector()
     static IsLogged(state: UserStateModel) : Boolean{
@@ -27,11 +31,16 @@ export class UserState{
         return state.token;
     }
 
+    @Selector()
+    static GetId(state: UserStateModel) : number{
+        return state.user.id;
+    }
+
     @Action(SignInUser)
     signIn({getState, patchState} : StateContext<UserStateModel>, {payload} : SignInUser){
         patchState({
             isLogged: true,
-            userId: payload.Id,
+            user: payload
         });
     }
 
@@ -40,7 +49,7 @@ export class UserState{
     
         patchState({
             isLogged: false,
-            userId: -1,
+            user: null,
             token: ""
         });
     }

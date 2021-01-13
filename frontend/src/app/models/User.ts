@@ -1,29 +1,29 @@
 export class User{
-  Id: number;
-  Name: string;
-  Surname: string;
-  Address: string;
-  PostalCode: string;
-  City: string;
-  MobilePhone: string;
-  Mail: string;
-  Country: string;
-  Gender: string;
-  Login : string;
-  Password: string;
+  id: number;
+  name: string;
+  surname: string;
+  address: string;
+  postalCode: string;
+  city: string;
+  mobilePhone: string;
+  mail: string;
+  country: string;
+  gender: string;
+  login : string;
+  password: string;
 
   constructor(id : number, name: string, surname: string, address: string, postalcode: string, city: string, mobilephone: string, mail: string, country: string, gender: string, login: string, password: string){
-    this.Id = id;
-    this.Name = name;
-    this.Surname = surname;
-    this.Address = address;
-    this.PostalCode = postalcode;
-    this.City = city;
-    this.MobilePhone = mobilephone;
-    this.Mail = mail;
-    this.Country = country;
-    this.Gender = gender;
-    this.Login = login;
-    this.Password = password;
+    this.id = id;
+    this.name = name;
+    this.surname = surname;
+    this.address = address;
+    this.postalCode = postalcode;
+    this.city = city;
+    this.mobilePhone = mobilephone;
+    this.mail = mail;
+    this.country = country;
+    this.gender = gender;
+    this.login = login;
+    this.password = password;
   }
 }

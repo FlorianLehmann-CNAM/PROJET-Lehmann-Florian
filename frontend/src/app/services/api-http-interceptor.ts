@@ -14,45 +14,21 @@ export class ApiHttpInterceptor implements HttpInterceptor{
     
     token : string = "";
 
-    constructor(private router: Router, private store: Store, private actions$: Actions){
-        this.actions$.pipe(ofActionDispatched(NewJwt)).subscribe(({ payload }) => { 
-            this.token = payload;console.log ("jwtToken modifié : " + this.token);} 
-        );
-        this.actions$.pipe(ofActionDispatched(SignOutUser)).subscribe(({payload}) => {
-            this.token = "";
+    constructor(private store: Store){
+        this.store.select(UserState.GetLoggedToken).subscribe(jwt => {
+            this.token = jwt;
+            console.log("jwt modifié: ", jwt);
         })
     }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
-
-        console.log("intercept");
-        if(this.token != ""){
-            req = req.clone({setHeaders:{ Authorization : `Bearer ${this.token}`}})
-            console.log("req changed with headers", req);
-        }
-
-        return next.handle(req).pipe(tap(
-            (evt: HttpEvent<any>) => {
-                if(evt instanceof HttpResponse){
-                    let authorization = evt.headers.get("Authorization");
-                    if(authorization != null){
-                        let tab = authorization.split(/Bearer\s+(.*)$/i);
-                        if(tab.length > 1){
-                            this.store.dispatch(new NewJwt(tab[1]));
-                        }
-                    }
-                }
+        req = req.clone({
+            setHeaders: {
+                'Authorization': "Bearer" + this.token
             },
-            (error: HttpErrorResponse) => {
-                switch(error.status){
-                    case 401:
-                        this.store.dispatch(new NewJwt(""));
-                        console.log("Error 401");
-                        this.router.navigate['/client/login']
-                        break;
-                }
-                return of(null);
-            } 
-        ));
+        });
+
+        return next.handle(req);
+      
     }
 }

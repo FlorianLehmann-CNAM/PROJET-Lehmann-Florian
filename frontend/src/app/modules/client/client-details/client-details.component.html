@@ -1,0 +1,17 @@
+<div *ngIf="user | async as user; else loading" style="text-align: center;">
+    <div class="headTitle">
+        <h1>Bonjour, {{user.name}} {{user.surname}}</h1>
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group" style="display: inline-block"><b>Adresse : </b>{{user.address}}, {{user.postalCode}} {{user.city}}, {{user.country}}</li>
+        <li class="list-group" style="display: inline-block"><b>Téléphone portable : </b>{{user.mobilePhone}}</li>
+        <li class="list-group" style="display: inline-block"><b>Adresse mail : </b>{{user.mail}}</li>
+        <li class="list-group" style="display: inline-block"><b>Expression de genre :  </b>{{user.gender}}</li>
+
+    </ul>
+</div>
+
+<ng-template #loading>
+    <p style="text-align: center;">Loading...</p>
+</ng-template>

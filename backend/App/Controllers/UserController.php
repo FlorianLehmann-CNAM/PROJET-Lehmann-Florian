@@ -14,84 +14,72 @@ use Firebase\JWT\JWT;
 class UserController{
    
     private $container;
+    private $entityManager;
 
 
     // constructor receives container instance
     public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
-    }
+        $this->entityManager = $container->get('entityManager');
 
-    
+    }
  
     public function login(ServerRequestInterface $request, ResponseInterface $response, array $args) : ResponseInterface{
-
-        require_once __DIR__ . '/../Doctrine/bootstrap.php';
-
 
         $login = $request->getQueryParams()['login'];
         $password = $request->getQueryParams()['password'];
 
-        $userRepo = $entityManager->getRepository('Users');
+        $userRepo = $this->entityManager->getRepository('Users');
         $userExist = $userRepo->findOneBy(array("login" => $login, "password" => $password));
 
         $response = JWTController::createJwt($response);
 
         if($userExist){
-            return $response->write(json_encode(array(
+            $response->getBody()->write(json_encode(array(
                 "success" => true,
-                "user" => [
-                    "id" => $userExist->getId(),
-                    "name" => $userExist->getName(),
-                    "surname" => $userExist->getSurname(),
-                    "mail" => $userExist->getMail()
-                ],
+                "user" => $userExist
             )));
         }
         else{
-            return $response->withStatus(404);
+            $response = $response->withStatus(404);
         }
         
-        
+        return $response;
     }
 
     public function register(ServerRequestInterface $request, ResponseInterface $response, array $args): ResponseInterface{
+    
         
-        require_once __DIR__ . '/../Doctrine/bootstrap.php';
-
-
         $value = json_decode($request->getBody());
-        $userRepo = $entityManager->getRepository('Users');
-        $userExists = $userRepo->findOneBy(array("login" => $value->login, "name" => $value->name));
+        $userRepo = $this->entityManager->getRepository('Users');
+        $userExists = $userRepo->findOneBy(array("login" => $value->Login, "name" => $value->Name));
         
         if(!$userExists){
             $user = new Users;
-            $user->setName($value->name);
-            $user->setSurname($value->surname);
-            $user->setAddress($value->address);
-            $user->setPostalCode($value->postalCode);
-            $user->setCity($value->city);
-            $user->setMobilePhone($value->mobilePhone);
-            $user->setMail($value->mail);
-            $user->setCountry($value->country);
-            $user->setGender($value->gender);
-            $user->setLogin($value->login);
-            $user->setPassword($value->password);
+            $user->setName($value->Name);
+            $user->setSurname($value->Surname);
+            $user->setAddress($value->Address);
+            $user->setPostalCode($value->PostalCode);
+            $user->setCity($value->City);
+            $user->setMobilePhone($value->MobilePhone);
+            $user->setMail($value->Mail);
+            $user->setCountry($value->Country);
+            $user->setGender($value->Gender);
+            $user->setLogin($value->Login);
+            $user->setPassword($value->Password);
 
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
 
-            return $response->write($request->getBody());
+            $response->getBody()->write(json_encode($value));
+            return $response;
         }
         else{
             return $response
                     ->withStatus(401);
 
         }
-
-     
-        
-        //return data
 
     }
 

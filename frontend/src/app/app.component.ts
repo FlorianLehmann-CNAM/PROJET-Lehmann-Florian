@@ -12,12 +12,16 @@ import { UserState } from './store/states/User.state';
 export class AppComponent  {
     name = 'Angular ' + VERSION.major;
     
-    isLogged : Observable<Boolean>;
+    isLogged$ : Observable<Boolean>;
 
     constructor(private store: Store){}
 
     ngOnInit(){
-        this.isLogged = this.store.select(UserState.IsLogged)
-       // this.store.select(UserState.IsLogged).subscribe((bool) => console.log("isLogged: ", bool));
+        this.isLogged$ = this.store.select(UserState.IsLogged)
+    }
+
+    getUserId(){
+        console.log("getUserId");
+        return this.store.select(UserState.GetId);
     }
 }

@@ -1,4 +1,4 @@
 export const environment = {
   production : true,
-  baseUrl: './assets/bouchons'
+  baseUrl: 'https://cnam-project-backend.herokuapp.com'
 }

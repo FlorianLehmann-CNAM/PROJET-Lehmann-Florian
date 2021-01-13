@@ -13,7 +13,7 @@ class JWTController{
 
     public static function createJWT(ResponseInterface $response) : ResponseInterface{
         $dateTime = time();
-        $expirationTime = $dateTime + 180; // 180s of validity 
+        $expirationTime = $dateTime + 1800; // 1800s of validity 
         
         $jwtPayload = array(
             "userId" => 1,

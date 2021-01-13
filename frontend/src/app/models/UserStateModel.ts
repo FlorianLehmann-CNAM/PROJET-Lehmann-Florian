@@ -1,6 +1,7 @@
+import { User } from "./User";
 
 export class UserStateModel{
     isLogged : boolean;
-    userId : number;
+    user : User;
     token: string;
 }

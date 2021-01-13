@@ -10,6 +10,7 @@ import { ClientComponentRoutingModule } from "./client-routing.module";
 import { CustomValidatorModule } from "../customValidatorModule";
 import { HttpServiceService } from 'src/app/services/http-service.service';
 import { LoginFormComponent } from './login-form/login-form.component';
+import { ClientDetailsComponent } from './client-details/client-details.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoginFormComponent } from './login-form/login-form.component';
     RecapComponent,
     MatchDirective,
     FormatPhonePipe,
-    LoginFormComponent
+    LoginFormComponent,
+    ClientDetailsComponent
   ],
   imports: [
     CommonModule,

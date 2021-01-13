@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { UserLoginQueryModel } from 'src/app/models/query/UserLoginQueryModel';
 import { User } from 'src/app/models/User';
 import { HttpServiceService } from 'src/app/services/http-service.service';
-import { SignInUser } from 'src/app/store/actions/User.action';
+import { NewJwt, SignInUser } from 'src/app/store/actions/User.action';
 
 @Component({
   selector: 'app-login-form',
@@ -49,7 +49,8 @@ export class LoginFormComponent implements OnInit {
     }
 
     ngOnDestroy(): void{
-
+        if(this.loginSubscription)
+            this.loginSubscription.unsubscribe();
     }
 
     onSubmit() : void{

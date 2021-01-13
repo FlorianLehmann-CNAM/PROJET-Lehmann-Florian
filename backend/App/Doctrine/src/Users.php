@@ -1,11 +1,11 @@
 <?php
 
-
+use JsonSerializable;
 
 /**
  * Users
  */
-class Users
+class Users implements JsonSerializable
 {
     /**
      * @var int
@@ -340,5 +340,21 @@ class Users
     public function getPassword()
     {
         return $this->password;
+    }
+
+    public function jsonSerialize(){
+        return [
+            "id" => $this->getId(),
+            "name" => $this->getName(),
+            "surname" => $this->getSurname(),
+            "address" => $this->getAddress(),
+            "postalCode" => $this->getPostalcode(),
+            "city" => $this->getCity(),
+            "mobilePhone" => $this->getMobilephone(),
+            "mail" => $this->getMail(),
+            "country" => $this->getCountry(),
+            "gender" => $this->getGender(),
+            "login" => $this->getLogin()
+        ];
     }
 }

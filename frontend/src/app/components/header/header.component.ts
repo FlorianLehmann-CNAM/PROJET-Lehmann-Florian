@@ -25,6 +25,5 @@ export class HeaderComponent {
   Disconnect() : void{
       this.store.dispatch(new SignOutUser());
       this.router.navigate(['/home']);
-
   }
 }
