@@ -53,21 +53,21 @@ class UserController{
         
         $value = json_decode($request->getBody());
         $userRepo = $this->entityManager->getRepository('Users');
-        $userExists = $userRepo->findOneBy(array("login" => $value->Login, "name" => $value->Name));
+        $userExists = $userRepo->findOneBy(array("login" => $value->login, "name" => $value->name));
         
         if(!$userExists){
             $user = new Users;
-            $user->setName($value->Name);
-            $user->setSurname($value->Surname);
-            $user->setAddress($value->Address);
-            $user->setPostalCode($value->PostalCode);
-            $user->setCity($value->City);
-            $user->setMobilePhone($value->MobilePhone);
-            $user->setMail($value->Mail);
-            $user->setCountry($value->Country);
-            $user->setGender($value->Gender);
-            $user->setLogin($value->Login);
-            $user->setPassword($value->Password);
+            $user->setName($value->name);
+            $user->setSurname($value->surname);
+            $user->setAddress($value->address);
+            $user->setPostalCode($value->postalCode);
+            $user->setCity($value->city);
+            $user->setMobilePhone($value->mobilePhone);
+            $user->setMail($value->mail);
+            $user->setCountry($value->country);
+            $user->setGender($value->gender);
+            $user->setLogin($value->login);
+            $user->setPassword($value->password);
 
             $this->entityManager->persist($user);
             $this->entityManager->flush();
